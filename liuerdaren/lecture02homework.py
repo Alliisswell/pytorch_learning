@@ -22,10 +22,9 @@ def loss(x, y):
     return (y_pred - y) * (y_pred - y)
 
 
-mse_list = []
 W = np.arange(0.0, 4.1, 0.1)
 B = np.arange(0.0, 4.1, 0.1)
-[w, b] = np.meshgrid(W, B)
+w, b = np.meshgrid(W, B)
 
 l_sum = 0
 for x_val, y_val in zip(x_data, y_data):
@@ -34,8 +33,21 @@ for x_val, y_val in zip(x_data, y_data):
     loss_val = loss(x_val, y_val)
     l_sum += loss_val
 
+label_font = {
+    'color': 'c',
+    'size': 15,
+    'weight': 'bold'
+}
+
 fig = plt.figure()
 ax = Axes3D(fig)
 fig.add_axes(ax)
 ax.plot_surface(w, b, l_sum / 3)
+
+ax.set_xlabel("w axis", fontdict=label_font)
+ax.set_ylabel("b axis", fontdict=label_font)
+ax.set_zlabel("loss axis", fontdict=label_font)
+ax.set_title("loss_w_b", alpha=0.5, color="b", size=50, fontdict=label_font)  # 设置标题，alpha透明度
+
+
 plt.show()
