@@ -4,9 +4,9 @@
 # learning time: 2022/9/22 17:31
 __author__ = '李晓宁'
 
-import matplotlib.pyplot as plt
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+
 
 # 这里设函数为y=3x+2
 x_data = [1.0, 2.0, 3.0]
@@ -35,19 +35,22 @@ for x_val, y_val in zip(x_data, y_data):
 
 label_font = {
     'color': 'c',
-    'size': 15,
+    'size': 10,
+    'weight': 'bold'
+}
+title_font = {
+    'color': 'b',
+    'size': 20,
     'weight': 'bold'
 }
 
 fig = plt.figure()
-ax = Axes3D(fig)
-fig.add_axes(ax)
+ax = fig.add_subplot(111, projection='3d')
 ax.plot_surface(w, b, l_sum / 3)
 
 ax.set_xlabel("w axis", fontdict=label_font)
 ax.set_ylabel("b axis", fontdict=label_font)
 ax.set_zlabel("loss axis", fontdict=label_font)
-ax.set_title("loss_w_b", alpha=0.5, color="b", size=50, fontdict=label_font)  # 设置标题，alpha透明度
-
+ax.set_title("loss_w_b", alpha=0.5, fontdict=title_font)  # 设置标题，alpha透明度
 
 plt.show()
